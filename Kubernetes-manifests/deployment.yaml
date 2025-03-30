@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boardgame-deploy
+  labels:
+    app: boardgame-cicd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: boardgame-cicd
+  template:
+    metadata:
+      labels:
+        app: boardgame-cicd
+    spec:
+      containers:
+        - name: boardgame
+          image: sandydocker19/boardgame-appcicd:3
+          ports:
+            - containerPort: 9090 #application port (expose in dokcerfile)
